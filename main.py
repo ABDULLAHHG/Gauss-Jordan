@@ -5,9 +5,9 @@ import plotly.graph_objects as go
 st.header("Simple app for Gauss jordan project")
 variables = ["x1" , "x2" , "x3"]
 
-defualtEquation1 = "6x1+3x2+3x3=14"
-defualtEquation2 = "8x1+5x2+3x3=19"
-defualtEquation3 = "5x1+3x2+4x3=11"
+defualtEquation1 = "2x1+9x2+4x3=16"
+defualtEquation2 = "9x1+9x2+2x3=14"
+defualtEquation3 = "8x1+3x2+5x3=16"
 
 if st.button("Create Random Linear Equations"):
     defualtEquation1 = ("+".join([f"{i}{x}" for i , x in zip(np.random.randint(low = 1, high = 10 , size = 3) , variables)if i!= 0]) + "=" + str(int(np.random.randint(low = 10, high = 20 , size = 1))))
@@ -56,13 +56,13 @@ y1  = (L1.split("=")[1])
 y2  = (L2.split("=")[1])
 y3  = (L3.split("=")[1])
 
-st.write("Current Matrix")
-st.write(f"""
-         [{c1} , {c2} , {c3}] = {y1}\n
-         [{c4} , {c5} , {c6}] = {y2}\n
-         [{c7} , {c8} , {c9}] = {y3}
-         """)
-
+st.subheader("Current Matrix")
+# Display the matrix and values using st.latex
+st.latex(r"""\begin{{bmatrix}}
+{} & {} & {} = {}\\
+{} & {} & {} = {}\\
+{} & {} & {} = {}
+\end{{bmatrix}}""".format(c1, c2, c3, y1, c4, c5, c6, y2, c7, c8, c9, y3))
 
 n = 3 
 
@@ -107,10 +107,16 @@ for i in range(n):
             matrix[j][k] = matrix[j][k] - ratio * matrix[i][k]
 
 
-st.write("Result")
+st.subheader("Result")
 
-st.write(f"""
-         [{int(matrix[0][0])} , {int(matrix[0][1])} , {int(matrix[0][2])}] = {round(matrix[0][3] , 2)}\n
-         [{int(matrix[1][0])} , {int(matrix[1][1])} , {int(matrix[1][2])}] = {round(matrix[1][3] , 2)}\n
-         [{int(matrix[2][0])} , {int(matrix[2][1])} , {int(matrix[2][2])}] = {round(matrix[2][3] , 2)}
-         """)
+# Display the matrix and values using st.latex
+st.latex(r"""
+\begin{{bmatrix}}
+{} & {} & {} = {}\\
+{} & {} & {} = {}\\
+{} & {} & {} = {}
+\end{{bmatrix}}""".format(
+    int(matrix[0][0]), int(matrix[0][1]), int(matrix[0][2]), round(matrix[0][3], 2),
+    int(matrix[1][0]), int(matrix[1][1]), int(matrix[1][2]), round(matrix[1][3], 2),
+    int(matrix[2][0]), int(matrix[2][1]), int(matrix[2][2]), round(matrix[2][3], 2)
+))
