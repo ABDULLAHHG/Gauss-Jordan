@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np 
 import plotly.graph_objects as go 
 
-st.sidebar.header("Website Settings")
+st.header("Simple app for Gauss jordan project")
 variables = ["x1" , "x2" , "x3"]
 
 defualtEquation1 = "6x1+3x2+3x3=14"
@@ -39,8 +39,8 @@ fig.add_trace(go.Scatter(x = x1, y = result1,
 fig.update_layout(
                  font = dict(color = "#909497", size = 18),
                  title = dict(text = "Simple Linear Graph", font = dict(size = 26)),
-                 xaxis = dict(title = "X", linecolor = "#909497"),
-                 yaxis = dict(title = "Y", tickformat = ",", linecolor = "#909497"),
+                 xaxis = dict(title = "Input", linecolor = "#909497"),
+                 yaxis = dict(title = "Output", tickformat = ",", linecolor = "#909497"),
                  margin = dict(t = 100, r = 80, b = 80, l = 120),
                  height = 720,
                  width = 900)
